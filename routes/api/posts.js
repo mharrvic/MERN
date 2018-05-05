@@ -187,6 +187,11 @@ router.post(
           .map(item => item._id.toString())
           .indexOf(req.params.comment_id);
 
+        // Only the comment owner can delete post
+        if(req.user.id !== post.comments[removeIndex].user.toString()) {
+          return res.status(401).json({ notauthorized: 'User not authorized in this action' });
+        }
+
         // Splice comment out of array
         post.comments.splice(removeIndex, 1);
         // Save
