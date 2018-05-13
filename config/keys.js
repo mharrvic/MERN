@@ -1,4 +1,4 @@
 module.exports = {
-  mongoURI: 'mongodb://brad:brad@ds231725.mlab.com:31725/devconnector',
+  mongoURI: 'mongodb://mak:mak@ds151169.mlab.com:51169/thesis',
   secretOrKey: 'secret'
 };
