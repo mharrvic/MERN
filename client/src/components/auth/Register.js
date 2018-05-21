@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registeruser } from '../../actions/authActions';
@@ -13,27 +13,32 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
-      errors: {}
+      errors: {},
     };
-    
+
     // bind 'this'
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-  
-  // Get Errors from REDUX state and put into PROPS 
-  componentWillReceiveProps(nextProps) {
-    // if (nextProps.errors) {
-    //   this.setState({ errors: nextProps.errors });
-    // }
-    (nextProps.errors) ? this.setState({ errors: nextProps.errors }) : null;
-  }
-  
-  
 
-  onChange = x => this.setState({
-    [x.target.name]: x.target.value
-  })
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
+  // Get Errors from REDUX state and put into PROPS
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+    // (nextProps.errors) ? this.setState({ errors: nextProps.errors }) : null;
+  }
+
+  onChange = x =>
+    this.setState({
+      [x.target.name]: x.target.value,
+    });
 
   onSubmit = x => {
     x.preventDefault(); // to disable defautl behavior
@@ -42,8 +47,8 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
-    }
+      password2: this.state.password2,
+    };
 
     // axios // Send http request to API
     //   .post('/api/users/register', newUser)
@@ -51,13 +56,11 @@ class Register extends Component {
     //   .catch(err => console.log(err.response.data))
 
     this.props.registeruser(newUser, this.props.history);
-  }
-
- 
+  };
 
   render() {
     const { errors } = this.state;
-  
+
     return (
       <div className="register">
         <div className="container">
@@ -72,7 +75,7 @@ class Register extends Component {
                   <input
                     type="text"
                     className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.name
+                      'is-invalid': errors.name,
                     })}
                     placeholder="Name"
                     name="name"
@@ -87,7 +90,7 @@ class Register extends Component {
                   <input
                     type="email"
                     className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.email
+                      'is-invalid': errors.email,
                     })}
                     placeholder="Email Address"
                     name="email"
@@ -106,7 +109,7 @@ class Register extends Component {
                   <input
                     type="password"
                     className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password
+                      'is-invalid': errors.password,
                     })}
                     placeholder="Password"
                     name="password"
@@ -121,7 +124,7 @@ class Register extends Component {
                   <input
                     type="password"
                     className={classnames('form-control form-control-lg', {
-                      'is-invalid': errors.password2
+                      'is-invalid': errors.password2,
                     })}
                     placeholder="Confirm Password"
                     name="password2"
@@ -146,13 +149,13 @@ class Register extends Component {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired, // is a function and required
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 // Mapping all the propTypes
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, { registeruser })(withRouter(Register));
