@@ -1,10 +1,17 @@
-import { GET_PROFILE, PROFILE_LOADING } from '../actions/types';
+import { GET_PROFILE, PROFILE_LOADING, CLEAR_CURRENT_PROFILE } from '../actions/types';
 
 const initialState = {
   profile: null,
   profiles: null,
   loading: false
 }
+
+// Spread Operator can:
+//   add the elements of an existing array into a new array
+//   pass elements of an array as arguments to a function
+//   copy arrays
+//   concatenate arrays
+
 
 export default (state = initialState, action) => {
   switch(action.type) {
@@ -19,6 +26,11 @@ export default (state = initialState, action) => {
           profile: action.payload,
           loading: false
         };
+        case CLEAR_CURRENT_PROFILE:
+          return {
+            ...state,
+            profile: null
+          }
     default:
       return state;
   }
