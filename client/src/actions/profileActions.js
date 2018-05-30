@@ -1,24 +1,34 @@
 import axios from 'axios';
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS, CLEAR_CURRENT_PROFILE } from './types';
+import {
+  GET_PROFILE,
+  PROFILE_LOADING,
+  GET_ERRORS,
+  CLEAR_CURRENT_PROFILE,
+  SET_CURRENT_USER,
+} from './types';
 
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading()); // returning an action of setProfileLoading
-  axios.get('./api/profile') // get the profile in public api
+  axios
+    .get('./api/profile') // get the profile in public api
     .then(res =>
       // we use dispatch "to change data in redux state"
-      dispatch({ // get the profile and pass along the data in response
+      dispatch({
+        // get the profile and pass along the data in response
         type: GET_PROFILE,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => // if there is no profile, and empty payload
+    .catch((
+      err // if there is no profile, and empty payload
+    ) =>
       dispatch({
         type: GET_PROFILE,
-        payload: {}
+        payload: {},
       })
     );
-}
+};
 
 // Create Profile
 export const createProfile = (profileData, history) => dispatch => {
@@ -28,21 +38,41 @@ export const createProfile = (profileData, history) => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response.data,
       })
     );
+};
+
+// Delete Account and Profile
+export const deleteAccount = () => dispatch => {
+  if (window.confirm('Are you sure? This can NOT be undone!')) {
+    axios
+      .delete('/api/profile')
+      .then(res =>
+        dispatch({
+          type: SET_CURRENT_USER,
+          payload: {},
+        })
+      )
+      .catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data,
+        })
+      );
+  }
 };
 
 // Profile Loading
 export const setProfileLoading = () => {
   return {
-    type: PROFILE_LOADING
-  }
-}
+    type: PROFILE_LOADING,
+  };
+};
 
 // Clear profile
 export const clearCurrentProfile = () => {
   return {
-    type: CLEAR_CURRENT_PROFILE
-  }
-}
+    type: CLEAR_CURRENT_PROFILE,
+  };
+};
