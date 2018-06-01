@@ -61,24 +61,24 @@ class Login extends Component {
                 Sign in to your DevConnector account
               </p>
               <form onSubmit={this.onSubmit}>
-                <TextFieldGroup 
+                <TextFieldGroup
                   placeholder="Email Address"
                   name="email"
                   type="email"
-                  valule={this.state.email}
+                  value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
                   info="This site uses Gravatar so if you want a profile image, use a Gravatar email"
                 />
-                <TextFieldGroup 
+                <TextFieldGroup
                   placeholder="Password"
                   name="password"
                   type="password"
-                  valule={this.state.password}
+                  value={this.state.password}
                   onChange={this.onChange}
                   error={errors.password}
                 />
-                
+
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>
             </div>
@@ -89,7 +89,7 @@ class Login extends Component {
   }
 }
 
-Login.PropTypes = {
+Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,

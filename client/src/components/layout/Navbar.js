@@ -18,6 +18,11 @@ class Navbar extends Component {
     const authLinks = (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
+          <Link className="nav-link" to="/dashboard">
+            Dashboard
+          </Link>
+        </li>
+        <li className="nav-item">
           <a
             href="#"
             onClick={this.onLogoutClick.bind(this)}
@@ -92,4 +97,6 @@ const mapStateToProps = state => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(Navbar);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
+  Navbar
+);
