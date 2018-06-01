@@ -161,7 +161,7 @@ class AddExperience extends Component {
 AddExperience.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  addExperience: PropTypes.isRequired,
+  addExperience: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

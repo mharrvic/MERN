@@ -33,13 +33,6 @@ class AddEducation extends Component {
     return null;
   }
 
-  // static getDerivedStateFromProps(nextProps) {
-  //   if (nextProps.errors) {
-  //     this.setState({ errors: nextProps.errors });
-  //   }
-  //   return null;
-  // }
-
   onSubmit(x) {
     x.preventDefault();
 
@@ -159,7 +152,7 @@ class AddEducation extends Component {
 AddEducation.propTypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  addEducation: PropTypes.isRequired,
+  addEducation: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
