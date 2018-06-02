@@ -2,6 +2,7 @@ import axios from 'axios';
 import { logoutUser } from './authActions';
 import {
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
@@ -12,7 +13,7 @@ import {
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading()); // returning an action of setProfileLoading
   axios
-    .get('./api/profile') // get the profile in public api
+    .get('/api/profile') // get the profile in public api
     .then(res =>
       // we use dispatch "to change data in redux state"
       dispatch({
@@ -27,6 +28,29 @@ export const getCurrentProfile = () => dispatch => {
       dispatch({
         type: GET_PROFILE,
         payload: {},
+      })
+    );
+};
+
+// Get profile by handle
+export const getProfileByHandle = handle => dispatch => {
+  dispatch(setProfileLoading()); // returning an action of setProfileLoading
+  axios
+    .get(`/api/profile/handle/${handle}`) // get the profile in public api
+    .then(res =>
+      // we use dispatch "to change data in redux state"
+      dispatch({
+        // get the profile and pass along the data in response
+        type: GET_PROFILE,
+        payload: res.data,
+      })
+    )
+    .catch((
+      err // if there is no profile, and empty payload
+    ) =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null,
       })
     );
 };
@@ -108,6 +132,25 @@ export const deleteEducation = id => dispatch => {
         })
       );
   }
+};
+
+// Get all profiles
+export const getProfiles = () => dispatch => {
+  dispatch(setProfileLoading());
+  axios
+    .get('api/profile/all')
+    .then(res =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: res.data,
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: null,
+      })
+    );
 };
 
 // Delete Account and Profile and remove token from localStorage

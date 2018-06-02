@@ -142,12 +142,22 @@ router.post(
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
-        // Update
-        Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        ).then(profile => res.json(profile));
+        // Old Update
+        // Profile.findOneAndUpdate(
+        //   { user: req.user.id },
+        //   { $set: profileFields },
+        //   { new: true }
+        // ).then(profile => res.json(profile));
+
+        Profile.findOne({ handle: profileFields.handle }).then(exists => {
+          if (exists) {
+            errors.handle = 'That handle already exists';
+            return res.status(400).json(errors);
+          }
+          Profile.update({ $set: profileFields }, { new: true }).then(profile =>
+            res.json(profile)
+          );
+        });
       } else {
         // Create
 
@@ -189,7 +199,7 @@ router.post(
         from: req.body.from,
         to: req.body.to,
         current: req.body.current,
-        description: req.body.description
+        description: req.body.description,
       };
 
       // Add to exp array
@@ -223,7 +233,7 @@ router.post(
         from: req.body.from,
         to: req.body.to,
         current: req.body.current,
-        description: req.body.description
+        description: req.body.description,
       };
 
       // Add to exp array
