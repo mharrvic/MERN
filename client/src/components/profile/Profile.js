@@ -16,6 +16,12 @@ class Profile extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push('/not-found');
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
     let profileContent;
@@ -45,6 +51,7 @@ class Profile extends Component {
         </div>
       );
     }
+
     return (
       <div className="profile">
         <div className="container">
@@ -57,10 +64,11 @@ class Profile extends Component {
   }
 }
 
-Profile.proptypes = {
+Profile.propTypes = {
+  getProfileByHandle: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  getProfileHandle: PropTypes.func.isRequired,
 };
+
 const mapStateToProps = state => ({
   profile: state.profile,
 });
