@@ -1,4 +1,9 @@
-import { ADD_POST, GET_POSTS, POST_LOADING } from '../actions/types';
+import {
+  ADD_POST,
+  GET_POSTS,
+  POST_LOADING,
+  DELETE_POST,
+} from '../actions/types';
 
 const initialState = {
   posts: [],
@@ -25,6 +30,11 @@ export default (state = initialState, action) => {
       return {
         ...state, // anything thats in the state
         posts: [action.payload, ...state.posts], // existing post and newpost(...state.posts) overriding post
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter(post => post._id !== action.payload),
       };
     default:
       return state;

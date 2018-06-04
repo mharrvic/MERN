@@ -26,6 +26,7 @@ class Posts extends Component {
           <div className="row">
             <div className="col-md-12">
               <PostForm />
+              {postContent}
             </div>
           </div>
         </div>
@@ -44,4 +45,7 @@ const mapStateToProps = state => ({
   post: state.post,
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(
+  mapStateToProps,
+  { getPosts }
+)(Posts);
