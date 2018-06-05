@@ -4,6 +4,7 @@ import {
   POST_LOADING,
   DELETE_POST,
   LIKE_POST,
+  GET_POST,
 } from '../actions/types';
 
 const initialState = {
@@ -50,6 +51,12 @@ export default (state = initialState, action) => {
             return post;
           }
         }),
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: action.payload, // response of the backend
+        loading: false,
       };
     default:
       return state;
