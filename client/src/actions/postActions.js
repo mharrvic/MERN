@@ -13,7 +13,7 @@ import {
 
 // Add Post
 export const addPost = postData => dispatch => {
-  dispatch(clearErors());
+  dispatch(clearErrors());
   axios
     .post('/api/posts', postData)
     .then(res =>
@@ -33,6 +33,7 @@ export const addPost = postData => dispatch => {
 // Get Posts
 export const getPosts = () => dispatch => {
   dispatch(setPostLoading());
+  dispatch(clearErrors());
   axios
     .get('/api/posts')
     .then(res =>
@@ -124,7 +125,7 @@ export const removeLike = id => dispatch => {
 
 // Add Comment
 export const addComment = (postId, commentData) => dispatch => {
-  dispatch(clearErors());
+  dispatch(clearErrors());
   axios
     .post(`/api/posts/comment/${postId}`, commentData)
     .then(res =>
@@ -167,7 +168,7 @@ export const setPostLoading = () => {
 };
 
 // Clear Errors
-export const clearErors = () => {
+export const clearErrors = () => {
   return {
     type: CLEAR_ERRORS,
   };
