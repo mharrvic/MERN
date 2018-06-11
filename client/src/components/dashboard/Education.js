@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteEducation } from '../../actions/profileActions';
+import Card from '@hackclub/design-system/dist/Card';
 
 class Education extends Component {
   onDeleteClick(id) {
@@ -33,7 +34,14 @@ class Education extends Component {
       </tr>
     ));
     return (
-      <div>
+      <Card
+        boxShadowSize="lg"
+        borderWidth={0}
+        borderRadius={3}
+        p={5}
+        my={2}
+        bg="#9dcee6"
+      >
         <h4 className="mb-4">Education Credentials</h4>
         <table className="table">
           <thead>
@@ -46,7 +54,7 @@ class Education extends Component {
             {education}
           </thead>
         </table>
-      </div>
+      </Card>
     );
   }
 }
@@ -55,4 +63,7 @@ Education.propTypes = {
   deleteEducation: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteEducation })(Education);
+export default connect(
+  null,
+  { deleteEducation }
+)(Education);

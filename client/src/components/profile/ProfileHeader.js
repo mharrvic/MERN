@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import isEmpty from '../../validation/is-empty';
+// import Card from '@hackclub/design-system/dist/Card';
+import styled from 'styled-components';
 
 class ProfileHeader extends Component {
   render() {
+    const Card = styled.div`
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      background: linear-gradient(to right, orange, #ec38bc, #7303c0, cyan);
+      padding: 5px;
+    `;
     const { profile } = this.props;
 
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="card card-body bg-info text-white mb-3">
+          <Card>
             <div className="row">
               <div className="col-4 col-md-3 m-auto">
                 <img
@@ -75,7 +82,7 @@ class ProfileHeader extends Component {
                 )}
               </p>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     );

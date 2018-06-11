@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
-
 const TextFieldGroup = ({
   name,
   placeholder,
@@ -12,7 +11,7 @@ const TextFieldGroup = ({
   info,
   type,
   onChange,
-  disabled
+  disabled,
 }) => {
   return (
     <div className="form-group">
@@ -30,8 +29,8 @@ const TextFieldGroup = ({
       {info && <small className="form-text text-muted">{info}</small>}
       {error && <div className="invalid-feedback">{error}</div>}
     </div>
-  )
-}
+  );
+};
 
 TextFieldGroup.propTypes = {
   name: PropTypes.string.isRequired,
@@ -41,11 +40,11 @@ TextFieldGroup.propTypes = {
   error: PropTypes.string,
   type: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.string
-}
+  disabled: PropTypes.string,
+};
 
 TextFieldGroup.defaultProps = {
-  type: 'text'
-}
+  type: 'text',
+};
 
 export default TextFieldGroup;

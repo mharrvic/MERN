@@ -3,10 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@atlaskit/avatar": "^11.0.1",
+    "@atlaskit/field-text": "^6.0.1",
+    "@atlaskit/reduced-ui-pack": "^8.10.1",
+    "@hackclub/design-system": "0.0.1-10",
     "axios": "^0.18.0",
     "classnames": "^2.2.5",
+    "grommet": "^2.0.0-beta.3",
+    "grommet-icons": "^1.0.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
+    "pcln-design-system": "^1.0.0-58",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-moment": "^0.7.0",
@@ -14,9 +21,13 @@
     "react-router": "^4.2.0",
     "react-router-dom": "4.2.2",
     "react-scripts": "1.1.4",
+    "rebass": "^2.0.0-2",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "styled-components": "^3.3.2",
+    "uigradients": "^0.2.1",
+    "wix-style-react": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

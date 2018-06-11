@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEmpty from '../../validation/is-empty';
+import Card from '@hackclub/design-system/dist/Card';
 
 class ProfileAbout extends Component {
   render() {
@@ -19,8 +20,16 @@ class ProfileAbout extends Component {
     return (
       <div className="row">
         <div className="col-md-12">
-          <div className="card card-body bg-light mb-3">
+          <Card
+            boxShadowSize="lg"
+            borderWidth={0}
+            borderRadius={3}
+            p={5}
+            my={2}
+            bg="#fa0"
+          >
             <h3 className="text-center text-info">{firstName}'s Bio</h3>
+
             <p className="lead">
               {isEmpty(profile.bio) ? (
                 <span>{firstName} does not have a bio</span>
@@ -35,7 +44,7 @@ class ProfileAbout extends Component {
                 {skills}
               </div>
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     );

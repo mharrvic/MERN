@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { deleteExperience } from '../../actions/profileActions';
+import Card from '@hackclub/design-system/dist/Card';
+import RedButton from 'pcln-design-system/dist/RedButton';
 
 class Experience extends Component {
   onDeleteClick(id) {
@@ -23,17 +25,21 @@ class Experience extends Component {
           )}
         </td>
         <td>
-          <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn btn-danger"
-          >
+          <RedButton onClick={this.onDeleteClick.bind(this, exp._id)}>
             Delete
-          </button>
+          </RedButton>
         </td>
       </tr>
     ));
     return (
-      <div>
+      <Card
+        boxShadowSize="lg"
+        borderWidth={0}
+        borderRadius={3}
+        p={5}
+        my={2}
+        bg="#b1d39f"
+      >
         <h4 className="mb-4">Experience Credentials</h4>
         <table className="table">
           <thead>
@@ -46,7 +52,7 @@ class Experience extends Component {
             {experience}
           </thead>
         </table>
-      </div>
+      </Card>
     );
   }
 }
@@ -55,4 +61,7 @@ Experience.propTypes = {
   deleteExperience: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteExperience })(Experience);
+export default connect(
+  null,
+  { deleteExperience }
+)(Experience);

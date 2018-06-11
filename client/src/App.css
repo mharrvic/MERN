@@ -17,7 +17,12 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/showcase.jpg') no-repeat;
+  background: linear-gradient(
+      to right,
+      rgba(75, 123, 211, 0.5),
+      rgba(22, 215, 177, 0.3)
+    ),
+    url('./img/headway.jpg') no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;

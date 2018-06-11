@@ -2,13 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import isEmpty from '../../validation/is-empty';
+import Card from 'pcln-design-system/dist/Card';
+import OutlineButton from 'pcln-design-system/dist/OutlineButton';
 
 class ProfileItem extends Component {
   render() {
     const { profile } = this.props;
 
     return (
-      <div className="card card-body bg-light mb-3">
+      <Card
+        color="#364049"
+        boxShadowSize="xl"
+        borderWidth={0}
+        borderRadius={4}
+        p={5}
+        m={4}
+      >
         <div className="row">
           <div className="col-2">
             <img src={profile.user.avatar} alt="" className="rounded-circle" />
@@ -26,8 +35,8 @@ class ProfileItem extends Component {
                 <span>{profile.location}</span>
               )}
             </p>
-            <Link to={`/profile/${profile.handle}`} className="btn btn-info">
-              View Profile
+            <Link to={`/profile/${profile.handle}`}>
+              <OutlineButton>View Profile</OutlineButton>
             </Link>
           </div>
           <div className="col-md-4 d-none d-md-block">
@@ -42,7 +51,7 @@ class ProfileItem extends Component {
             </ul>
           </div>
         </div>
-      </div>
+      </Card>
     );
   }
 }

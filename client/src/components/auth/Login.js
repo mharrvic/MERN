@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import TextFieldGroup from '../common/TextFieldGroup';
+import Button from 'pcln-design-system/dist/Button';
 
 class Login extends Component {
   constructor() {
@@ -58,7 +59,7 @@ class Login extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">
-                Sign in to your DevConnector account
+                Sign in to your FrontEnd Noobs account
               </p>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
@@ -79,7 +80,9 @@ class Login extends Component {
                   error={errors.password}
                 />
 
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <Button fullWidth="true" type="submit">
+                  Login
+                </Button>
               </form>
             </div>
           </div>
@@ -100,4 +103,7 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
